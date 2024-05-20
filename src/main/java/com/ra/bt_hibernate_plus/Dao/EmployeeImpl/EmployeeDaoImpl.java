@@ -18,7 +18,7 @@ public class EmployeeDaoImpl implements IEmployeeDao {
     public List getEmployee() {
         Session session = sessionFactory.openSession();
         try {
-            List list = session.createQuery("from Employee ").list();
+            List list = session.createQuery("from Employee join fetch Department ").list();
             return list;
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add Department</title>
+    <title>Add Employee</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,24 +34,35 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h1 class="text-primary mb-4">Add New Department</h1>
-    <form action="/addDepartment" method="post" th:object="${department}" enctype="multipart/form-data">
+    <h1 class="text-primary mb-4">Add New Employee</h1>
+    <form action="/addEmployee" method="post" th:object="${employees}">
         <div class="mb-3">
-            <label for="name" class="form-label">Department Name</label>
+            <label for="name" class="form-label">Employee Name</label>
             <input type="text" class="form-control" id="name" name="name" th:field="*{name}"
-                   placeholder="Enter department name">
+                   placeholder="Enter employee name">
             <div th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></div>
         </div>
         <div class="mb-3">
-            <label for="numberEmployee" class="form-label">Number of Employees</label>
-            <input type="number" class="form-control" id="numberEmployee" name="numberEmployee"
-                   th:field="*{numberEmployee}" placeholder="Enter number of employees">
-            <div th:if="${#fields.hasErrors('numberEmployee')}" class="text-danger" th:errors="*{numberEmployee}"></div>
+            <label for="dateOfBirth" class="form-label">Date Of Birth</label>
+            <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" th:field="*{dateOfBirth}"
+                   placeholder="Enter number of employees">
+            <div th:if="${#fields.hasErrors('dateOfBirth')}" class="text-danger" th:errors="*{dateOfBirth}"></div>
         </div>
         <div class="mb-3">
-            <label for="file" class="form-label">Department Cover</label>
-            <input type="file" class="form-control" id="file" name="image">
+            <label for="department" class="form-label">Department Name</label>
+            <select class="form-select" id="department" name="department" th:field="*{department}">
+                <option th:each="dep : ${departments}" th:value="${dep}" th:text="${dep.name}">Select department
+                </option>
+            </select>
+            <div th:if="${#fields.hasErrors('department')}" class="text-danger" th:errors="*{department}"></div>
         </div>
+        <div class="mb-3">
+            <label for="manageId" class="form-label">ManageId</label>
+            <input type="text" class="form-control" id="manageId" name="manageId" th:field="*{manageId}"
+                   placeholder="Enter employee name" required>
+            <div th:if="${#fields.hasErrors('manageId')}" class="text-danger" th:errors="*{manageId}"></div>
+        </div>
+
         <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-primary me-2">Submit</button>
             <button type="reset" class="btn btn-secondary">Clear</button>

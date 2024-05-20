@@ -23,6 +23,8 @@ public class DepartmentImpl implements IDepartmentDao {
             return list;
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            session.close();
         }
         return null;
     }
@@ -31,6 +33,7 @@ public class DepartmentImpl implements IDepartmentDao {
     public Department getDepartmentById(Integer id) {
         Session session = sessionFactory.openSession();
         Department department = session.get(Department.class, id);
+        session.close();
         return department;
     }
 

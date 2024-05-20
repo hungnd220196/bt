@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -24,9 +25,10 @@ public class Employee {
     @NotNull
     @Column(name = "name")
     private String name;
+    @NotNull
     @Column(name = "dateOfBirth")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
-
     @Column(name = "manage_id")
     private Integer manageId;
     @Column(name = "status")

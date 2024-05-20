@@ -1,24 +1,22 @@
-package com.ra.bt_hibernate_plus.entity;
+package com.ra.bt_hibernate_plus.dto;
 
-import lombok.*;
+import com.ra.bt_hibernate_plus.entity.Employee;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Builder
-@Entity
-@Table(name = "department")
-
-public class Department {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class DepartmentDto {
     @Column(name = "id")
     private Integer id;
     @NotEmpty(message = "Department name is required")
@@ -28,8 +26,7 @@ public class Department {
     private int numberEmployee;
     @Column(name = "status")
     private Boolean status;
-    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
     private List<Employee> employees;
     @Column(name = "image")
-    private String image;
+    private MultipartFile image;
 }
